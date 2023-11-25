@@ -1,5 +1,5 @@
 import React from 'react'
-import { v4 as uuid } from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 
 const timelineData = [
   {
@@ -56,12 +56,12 @@ const TimeLineItem = ({ data: { obj, index } }) => {
 
   return (
     <div className="rounded-lg bg-slate-100 p-3">
-      <div className="mb-1 text-xs font-bold text-amber-600">{`${heading}`}</div>
+      <div className="mb-1 text-xs font-bold text-amber-600 md:text-sm">{`${heading}`}</div>
 
       <ul className="list-outside list-disc">
         <div className="space-y-1">
           {content.map((item) => (
-            <li className="ml-2 text-xs">{item}</li>
+            <li className="ml-2 text-xs md:text-sm ">{item}</li>
           ))}
         </div>
       </ul>
@@ -71,10 +71,10 @@ const TimeLineItem = ({ data: { obj, index } }) => {
 
 const TimelineSection = () => {
   return (
-    <div className="mx-auto max-w-lg ">
+    <div className="mx-auto max-w-2xl">
       <div className="my-5 px-4">
         <div className="my-5 text-center text-3xl font-bold text-amber-500">
-          Your journey with us
+          What happens when you contact us
         </div>
 
         <ul className="timeline timeline-vertical">
@@ -83,7 +83,7 @@ const TimelineSection = () => {
             const isOdd = index % 2 !== 0
 
             return (
-              <li key={uuid()}>
+              <li key={uuidv4()}>
                 <hr className="bg-lime-400" />
 
                 {isEven && (
