@@ -30,6 +30,7 @@ const LandingSection = () => {
         </div>
       </div>
       <Image
+      alt=''
         src={img1}
         className="apply-base-img-css inset-0 z-0 col-[1/-1] row-[1/-1] scale-105 object-cover"
       />
