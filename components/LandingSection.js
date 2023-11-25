@@ -11,18 +11,18 @@ const LandingSection = () => {
       className="relative grid h-screen overflow-hidden"
     >
       <div className="relative z-10 col-[1/-1] row-[1/-1] grid place-content-center bg-gradient-to-b from-transparent to-slate-900 text-white">
-        <div className="mx-auto max-w-lg space-y-3 px-4">
-          <h2 className="text-4xl font-bold">
+        <div className="mx-auto max-w-2xl space-y-3 px-4 text-base lg:text-xl">
+          <h2 className="text-4xl font-bold lg:text-6xl">
             Reach Millions. <br />
             Make an Impact.
           </h2>
-          <p className="max-w-prose text-base">
+          <p className="max-w-prose">
             Take your brand to new heights with our strategic and creative
             outdoor advertising solutions.
           </p>
 
           <Link
-            className="btn bg-white font-bold text-slate-900 w-full"
+            className="btn w-full bg-white text-base font-bold text-slate-900 lg:text-xl"
             href={`#contact-us`}
           >
             Lets Connect!
@@ -30,9 +30,9 @@ const LandingSection = () => {
         </div>
       </div>
       <Image
-      alt=''
+        alt=""
         src={img1}
-        className="apply-base-img-css inset-0 z-0 col-[1/-1] row-[1/-1] scale-105 object-cover"
+        className="apply-base-img-css pointer-events-none inset-0 z-0 col-[1/-1] row-[1/-1] scale-105 object-cover"
       />
     </div>
   )
