@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Footer from '../components/footer'
 import OurWorks from '@/components/OurWorks'
 import Header from '@/components/header'
+import Form from '@/components/form'
 export default function Home() {
   return (
     <main>
@@ -16,7 +17,10 @@ export default function Home() {
       </section>
       <section id='contact-us'>
       <TimelineSection />
-      </section>      
+      </section>   
+      <section>
+        <Form />
+      </section>   
       <Footer />
     </main>
   )
