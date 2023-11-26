@@ -5,7 +5,7 @@ const Stats = () => {
   return (
     <div className="grid justify-center py-10">
       <div className="">
-        <div className="stats p-2 shadow ">
+        <div className="stats stats-vertical p-2 shadow lg:stats-horizontal">
           <div className="stat place-items-center">
             <div className="stat-title text-slate-400">Total Hoardings</div>
             <div className="stat-value text-slate-900">200+</div>
