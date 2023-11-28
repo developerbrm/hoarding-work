@@ -61,7 +61,7 @@ const TimeLineItem = ({ data: { obj, index } }) => {
       <ul className="list-outside list-disc">
         <div className="space-y-1">
           {content.map((item) => (
-            <li className="ml-2 text-xs md:text-sm ">{item}</li>
+            <li className="ml-2 text-xs md:text-sm " key={uuidv4()}>{item}</li>
           ))}
         </div>
       </ul>

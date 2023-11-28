@@ -13,7 +13,7 @@ const OurWorks = () => {
 
   return (
     <div className="">
-      <div className="my-5 px-4 mx-auto max-w-7xl">
+      <div className="mx-auto my-5 max-w-7xl px-4">
         <div className="my-5 text-center text-3xl font-bold text-amber-500">
           Our Works
         </div>
@@ -36,7 +36,7 @@ const OurWorks = () => {
             isBooked = !isAvailable
 
             return (
-              <>
+              <div key={uuidv4()}>
                 <div className="card w-full bg-white text-slate-900 shadow-xl">
                   <figure
                     className="relative aspect-square"
@@ -93,7 +93,7 @@ const OurWorks = () => {
                     </div>
                   </div>
                 </div>
-              </>
+              </div>
             )
           })}
         </div>
