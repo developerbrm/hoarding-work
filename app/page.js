@@ -7,7 +7,7 @@ import Stats from '@/components/Stats'
 import Maps from '@/components/Maps'
 
 import Header from '@/components/header'
-import Form from '@/components/form'
+import FormComponent from '@/components/FormComponent'
 export default function Home() {
   return (
     <main>
@@ -24,7 +24,7 @@ export default function Home() {
         <TimelineSection />
       </section>
       <section>
-        <Form />
+        <FormComponent />
       </section>
       <Footer />
     </main>
