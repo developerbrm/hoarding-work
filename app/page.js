@@ -11,7 +11,7 @@ import FormComponent from '@/components/FormComponent'
 export default function Home() {
   return (
     <main>
-      <Header />
+      {/* <Header /> */}
       <section id="home">
         <LandingSection />
       </section>

@@ -12,6 +12,9 @@ const LandingSection = () => {
     >
       <div className="relative z-10 col-[1/-1] row-[1/-1] grid place-content-center bg-gradient-to-b from-transparent to-slate-900 text-white">
         <div className="mx-auto max-w-2xl space-y-3 px-4 text-base lg:text-xl">
+          <div className="relative h-20 w-20 lg:h-32 lg:w-32">
+            <Image src={`/assets/images/logo-icon.jpeg`} fill={true} />
+          </div>
           <h2 className="text-4xl font-bold lg:text-6xl">
             Reach Millions. <br />
             Make an Impact.

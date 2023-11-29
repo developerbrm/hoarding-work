@@ -9,7 +9,7 @@ const API_KEY = `AIzaSyC686X49eO5SmTXlaNMUOdrWwDzC6UmJZ0`
 const Maps = () => {
   const containerStyle = {
     width: '100%',
-    height: '400px',
+    height: '800px',
   }
 
   const center = {
