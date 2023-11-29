@@ -48,7 +48,7 @@ const getValidationSchema = () => {
       })
       .min(3, 'Minimum 3 letters required')
       .max(15, 'Must be 15 characters or less')
-      .required("Required"),
+      .required('Required'),
     message: Yup.string().trim(),
     email: Yup.string()
       .trim()
@@ -61,7 +61,7 @@ const getValidationSchema = () => {
         message: 'Phone number is not valid',
       })
       .length(10, `Number should be at least 10 digits`)
-      .required("Required"),
+      .required('Required'),
   }
 
   const schema = Yup.object(rulesObj)
@@ -91,7 +91,9 @@ const InputItem = (props) => {
           />
         </div>
         {meta.touched && meta.error ? (
-          <div className="text-xs mt-0.5 capitalize text-rose-600">{meta.error}</div>
+          <div className="mt-0.5 text-xs capitalize text-rose-600">
+            {meta.error}
+          </div>
         ) : null}
       </div>
     </div>
