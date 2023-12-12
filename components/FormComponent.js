@@ -1,7 +1,19 @@
 'use client'
 
+import { db } from '@/firebase/FirebaseConfig'
+import { addDoc, collection } from 'firebase/firestore'
 import { Form, Formik, useField } from 'formik'
+import { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 import * as Yup from 'yup'
+import 'react-toastify/dist/ReactToastify.css'
+
+const addDataToFireStore = async (obj) => {
+
+  const formCollection = collection(db, 'forms')
+  const docRef = await addDoc(formCollection, obj)
+
+}
 
 const nameRegex = /^[\w\d\s]+$/
 const phoneRegExp =
@@ -32,7 +44,7 @@ const formData = [
   {
     name: 'message',
     label: 'Your Message',
-    type: 'text',
+    type: 'textarea',
     required: false,
     placeholder: 'Enter Your Message',
   },
@@ -70,7 +82,8 @@ const getValidationSchema = () => {
 }
 
 const InputItem = (props) => {
-  console.log(props)
+  const { type } = props
+  // console.log(props)
   const [field, meta, helpers] = useField(props.name)
 
   return (
@@ -84,11 +97,20 @@ const InputItem = (props) => {
           {props.required && <span className="text-rose-600">*</span>}
         </label>
         <div className="">
-          <input
-            className="input input-bordered w-full"
-            {...field}
-            {...props}
-          />
+          {type === 'textarea' ? (
+            <textarea
+              className="textarea textarea-bordered w-full resize-y text-base"
+              rows={3}
+              {...field}
+              {...props}
+            />
+          ) : (
+            <input
+              className="input input-bordered w-full"
+              {...field}
+              {...props}
+            />
+          )}
         </div>
         {meta.touched && meta.error ? (
           <div className="mt-0.5 text-xs capitalize text-rose-600">
@@ -101,6 +123,8 @@ const InputItem = (props) => {
 }
 
 export default function FormComponent() {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
   const formInitialState = {
     name: '',
     email: '',
@@ -109,33 +133,67 @@ export default function FormComponent() {
   }
 
   const handelOnSubmit = (values, actions) => {
-    console.log(values)
+    setIsSubmitting(true)
+
+    const toastOptions = {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    }
+
+    addDataToFireStore(values)
+      .then(() => {
+        toast.success('Form Submitted!', toastOptions)
+
+        actions.resetForm()
+      })
+      .catch((err) => {
+        toast.error('Something Went Wrong!', toastOptions)
+
+        console.log(err)
+      })
+      .finally(() => {
+        setIsSubmitting(false)
+      })
   }
 
   return (
-    <Formik
-      initialValues={formInitialState}
-      validationSchema={getValidationSchema()}
-      onSubmit={handelOnSubmit}
-    >
-      <div className="m-2 max-w-2xl rounded-lg border bg-slate-50 py-5 xl:mx-auto">
-        <div className="my-2 text-center text-3xl font-bold text-amber-500">
-          Lets Connect !
-        </div>
-        <Form className="grid gap-3 p-4">
-          {formData.map((props) => (
-            <InputItem key={props.name} {...props} />
-          ))}
+    <>
+      <Formik
+        initialValues={formInitialState}
+        validationSchema={getValidationSchema()}
+        onSubmit={handelOnSubmit}
+      >
+        <div className="m-2 max-w-2xl rounded-lg border bg-slate-50 py-5 xl:mx-auto">
+          <div className="my-2 text-center text-3xl font-bold text-amber-500">
+            Lets Connect !
+          </div>
+          <Form className="grid gap-3 p-4">
+            {formData.map((props) => (
+              <InputItem key={props.name} {...props} />
+            ))}
 
-          <button
-            name="submit"
-            className="btn mt-5 bg-slate-900 font-bold text-white"
-            type="submit"
-          >
-            Submit
-          </button>
-        </Form>
-      </div>
-    </Formik>
+            <button
+              name="submit"
+              className="btn mt-5 flex place-content-center gap-2 bg-slate-900 font-bold text-white hover:bg-indigo-600"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting && (
+                <span className="loading loading-spinner"></span>
+              )}
+
+              <span>Submit</span>
+            </button>
+          </Form>
+        </div>
+      </Formik>
+      <ToastContainer />
+    </>
   )
 }

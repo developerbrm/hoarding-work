@@ -5,7 +5,7 @@ export default function Footer() {
     <div className="py-3 px-5 bg-gradient-to-b from-slate-900 to-blue-950">
       <div className="flex justify-center p-2">
         <div className="relative h-20 w-20">
-          <Image src={`/assets/images/logo-icon.jpeg`} fill={true} />
+          <Image src={`/assets/images/logo-icon.jpeg`} fill={true} alt='logo icon'/>
         </div>
       </div>
       <div className="mx-auto" >
