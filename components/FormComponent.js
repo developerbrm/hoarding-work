@@ -1,6 +1,6 @@
 'use client'
 
-import { db } from '@/firebase/FirebaseConfig'
+import { db } from '@/firebase/firebaseConfig'
 import { addDoc, collection } from 'firebase/firestore'
 import { Form, Formik, useField } from 'formik'
 import { useState } from 'react'
@@ -9,10 +9,8 @@ import * as Yup from 'yup'
 import 'react-toastify/dist/ReactToastify.css'
 
 const addDataToFireStore = async (obj) => {
-
   const formCollection = collection(db, 'forms')
   const docRef = await addDoc(formCollection, obj)
-
 }
 
 const nameRegex = /^[\w\d\s]+$/
