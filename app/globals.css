@@ -1,6 +1,10 @@
 @tailwind base;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   .base-img-css,
   .apply-base-img-css {
     @apply block h-full max-h-full w-full max-w-full object-contain object-center;
