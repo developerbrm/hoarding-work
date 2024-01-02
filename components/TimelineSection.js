@@ -1,67 +1,37 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import { db } from '@/firebase/firebaseConfig'
+import { addDoc, collection, getDocs } from 'firebase/firestore'
 
-const timelineData = [
-  {
-    heading: 'Initial Contact',
-    content: [
-      'You contact us via phone, email, or chat.',
-      'A member of our sales team receives your inquiry and responds promptly.',
-      'We ask you about your needs and goals for your outdoor advertising campaign.',
-    ],
-  },
-  {
-    heading: 'Proposal Development',
-    content: [
-      'We develop a proposal that outlines our services and fees.',
-      'The proposal is sent to you for review.',
-      'We follow up with you to answer any questions and schedule a meeting to discuss the proposal in more detail.',
-    ],
-  },
-  {
-    heading: 'Campaign Planning',
-    content: [
-      'If you accept our proposal, we will begin planning your outdoor advertising campaign.',
-      'This will involve working with you to identify your target audience, develop a creative concept, and select the right media placements.',
-      'We will also develop a budget and timeline for the campaign.',
-    ],
-  },
-  {
-    heading: 'Campaign Execution',
-    content: [
-      `Once the campaign plan is finalized, we will execute the campaign.`,
-      `This will involve producing the creative materials, placing the ads, and tracking the campaign's performance.`,
-      `We will also provide regular reports to you on the campaign's progress.`,
-    ],
-  },
-  {
-    heading: 'Campaign Evaluation',
-    content: [
-      `After the campaign is complete, we will evaluate its effectiveness.`,
-      `This will involve reviewing the campaign's reach, frequency, and impact.`,
-      `We will also gather feedback from you to identify areas for improvement.`,
-    ],
-  },
-  {
-    heading: 'Ongoing Relationship',
-    content: [
-      `We will continue to work with you to develop future outdoor advertising campaigns.`,
-      `We will also provide you with ongoing support and advice.`,
-    ],
-  },
-]
+async function getAllTimelineDocuments() {
+  const timeLineCollectionRef = collection(db, 'timeline-section')
+
+  try {
+    const querySnapshot = await getDocs(timeLineCollectionRef)
+    const timelineDocuments = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      data: doc.data(),
+    }))
+    return timelineDocuments
+  } catch (error) {
+    console.error('Error fetching timeline documents:', error)
+  }
+}
 
 const TimeLineItem = ({ data: { obj, index } }) => {
-  const { heading, content } = obj
+  const { data, id } = obj
+  const { heading, content } = data
 
   return (
-    <div className="rounded-lg bg-slate-100 p-3">
+    <div key={id} className="rounded-lg bg-slate-100 p-3">
       <div className="mb-1 text-xs font-bold text-amber-600 md:text-sm">{`${heading}`}</div>
 
       <ul className="list-outside list-disc">
         <div className="space-y-1">
           {content.map((item) => (
-            <li className="ml-2 text-xs md:text-sm " key={uuidv4()}>{item}</li>
+            <li className="ml-2 text-xs md:text-sm " key={uuidv4()}>
+              {item}
+            </li>
           ))}
         </div>
       </ul>
@@ -69,7 +39,13 @@ const TimeLineItem = ({ data: { obj, index } }) => {
   )
 }
 
-const TimelineSection = () => {
+const TimelineSection = async () => {
+  const timeLineCollectionRef = collection(db, 'timeline-section')
+
+  const timelineData = await getAllTimelineDocuments().catch((error) => {
+    console.error('Error:', error)
+  })
+
   return (
     <div className="mx-auto max-w-2xl">
       <div className="my-5 px-4">
