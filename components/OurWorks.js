@@ -9,8 +9,6 @@ const OurWorks = () => {
     src: `/assets/images/img-${index + 1}.png`,
   }))
 
-  const imageWidth = '10rem'
-
   return (
     <div className="">
       <div className="mx-auto my-5 max-w-7xl px-4">

@@ -23,10 +23,10 @@ export default function Home() {
         <OurWorks />
       </section>
       <Maps />
-      <section id="contact-us">
+      <section>
         <TimelineSection />
       </section>
-      <section>
+      <section id="contact-us">
         <FormComponent />
       </section>
       <Footer />
