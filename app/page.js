@@ -8,6 +8,9 @@ import Maps from '@/components/Maps'
 
 import Header from '@/components/header'
 import FormComponent from '@/components/FormComponent'
+
+export const dynamic = 'force-dynamic'
+
 export default function Home() {
   return (
     <main>
