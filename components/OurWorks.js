@@ -43,7 +43,9 @@ const OurWorks = async () => {
             }
           }
         >
-          {documentsArr.map(OurWorkItem)}
+          {documentsArr.map((obj) => (
+            <OurWorkItem key={obj.id} obj={obj} />
+          ))}
         </div>
       </div>
     </div>

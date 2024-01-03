@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react'
 const GetImageFirebaseComponent = ({ data: { fileName, imagesPath } }) => {
   const sitesRef = ref(storage, imagesPath)
   const fileRef = ref(sitesRef, fileName)
-  const [imageSrc, setImageSrc] = useState('')
+  const [imageSrc, setImageSrc] = useState(null)
   const alt = ''
 
   useEffect(() => {
@@ -40,6 +40,8 @@ const GetImageFirebaseComponent = ({ data: { fileName, imagesPath } }) => {
         console.log(error.code)
       })
   }, [fileRef])
+
+  if (!imageSrc) return <div className="skeleton h-full rounded-b-none w-full"></div>
 
   return (
     <figure className="relative aspect-square" style={{}}>

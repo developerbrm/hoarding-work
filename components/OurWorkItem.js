@@ -1,21 +1,33 @@
-import GetImageFirebaseComponent from './GetImageFirebaseComponent'
+'use client'
 
-const OurWorkItem = (obj, index) => {
+import { useState } from 'react'
+import GetImageFirebaseComponent from './GetImageFirebaseComponent'
+import OurWorkPopup from './OurWorkPopup'
+
+const OurWorkItem = ({ obj }) => {
   const { id, data } = obj
+  const [showPopup, setShowPopup] = useState(false)
+  const { images } = data
 
   const availabilityText = data.availability
   const isAvailable = availabilityText.toLowerCase().includes('available')
   const fileName = data.images.at(0)
   const imagesPath = '/public/sites-images'
 
+  const handleCardClick = () => {
+    setShowPopup(true)
+  }
+
   return (
-    <div key={id}>
-      <div className="card w-full bg-white text-slate-900 shadow-xl">
-        <GetImageFirebaseComponent data={{ fileName, imagesPath }} />
+    <button onClick={handleCardClick} key={id}>
+      <div className="card w-full bg-white text-slate-900 shadow-xl rounded-lg overflow-hidden">
+        <div className="relative w-full h-64">
+          <GetImageFirebaseComponent data={{ fileName, imagesPath }} />
+        </div>
         <div className="card-body p-4">
           <div className="flex gap-1">
             <div
-              className={`badge text-white text-xs ${
+              className={`badge text-xs text-white ${
                 isAvailable ? 'bg-emerald-700' : 'bg-rose-700'
               }`}
             >
@@ -42,7 +54,9 @@ const OurWorkItem = (obj, index) => {
           </div>
         </div>
       </div>
-    </div>
+
+      <OurWorkPopup data={{ ...data, setShowPopup, showPopup }} />
+    </button>
   )
 }
 
