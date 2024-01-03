@@ -3,11 +3,30 @@ import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import img1 from '../public/assets/images/img-1.png'
+import { db, storage } from '@/firebase/firebaseConfig'
+import { collection, getDocs } from 'firebase/firestore'
+import OurWorkItem from './OurWorkItem'
 
-const OurWorks = () => {
-  const imagesArr = [...Array(18)].map((_, index) => ({
-    src: `/assets/images/img-${index + 1}.png`,
-  }))
+async function getHoardingData() {
+  const collectionRef = collection(db, 'hoarding-data')
+
+  let data = []
+
+  try {
+    const querySnapshot = await getDocs(collectionRef)
+    data = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      data: doc.data(),
+    }))
+  } catch (error) {
+    console.error('Error fetching documents:', error)
+  }
+
+  return data
+}
+
+const OurWorks = async () => {
+  const documentsArr = await getHoardingData()
 
   return (
     <div className="">
@@ -24,76 +43,7 @@ const OurWorks = () => {
             }
           }
         >
-          {imagesArr.map((obj, index) => {
-            const { src, alt = '' } = obj
-
-            let isBooked, isAvailable
-
-            isAvailable = Math.random() * 10 > 5
-
-            isBooked = !isAvailable
-
-            return (
-              <div key={uuidv4()}>
-                <div className="card w-full bg-white text-slate-900 shadow-xl">
-                  <figure
-                    className="relative aspect-square"
-                    key={uuidv4()}
-                    style={
-                      {
-                        // width: imageWidth,
-                      }
-                    }
-                  >
-                    <Image
-                      src={src}
-                      alt={alt}
-                      fill={true}
-                      className="apply-base-img-css object-cover"
-                    />
-                  </figure>
-                  <div className="card-body p-4">
-                    <div className="flex gap-1">
-                      {/* <div className="badge bg-slate-900 text-white">
-                        Backlit
-                      </div> */}
-                      {isAvailable && (
-                        <div className="badge bg-emerald-700 text-white">
-                          Available
-                        </div>
-                      )}
-                      {isBooked && (
-                        <div className="badge bg-rose-700 text-white">
-                          Booked
-                        </div>
-                      )}
-                    </div>
-                    <div className="space-y-1 text-xs lg:text-sm">
-                      <div className="flex gap-1">
-                        <div className="font-bold">Size:</div>
-                        <div className="font-normal">10x6</div>
-                      </div>
-                      <div className="flex gap-1">
-                        <div className="font-bold">Illumination:</div>
-                        <div className="font-normal">Backlit</div>
-                      </div>
-                      <div className="flex gap-1">
-                        <div className="font-bold">Media:</div>
-                        <div className="font-normal">Unipole</div>
-                      </div>
-                      <div className="flex gap-1">
-                        <div className="font-bold">Location:</div>
-                        <address className="link line-clamp-1">
-                          Outside Ritz Banquet, Opposite DLF Capital Greens and
-                          DLF One Midtown, Moti Nagar
-                        </address>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
+          {documentsArr.map(OurWorkItem)}
         </div>
       </div>
     </div>
