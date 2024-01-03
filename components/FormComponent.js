@@ -167,7 +167,7 @@ export default function FormComponent() {
         validationSchema={getValidationSchema()}
         onSubmit={handelOnSubmit}
       >
-        <div className="m-2 max-w-2xl rounded-lg border bg-slate-50 py-5 xl:mx-auto">
+        <div className="m-2 my-10 max-w-2xl rounded-lg border bg-slate-50 py-5 xl:mx-auto">
           <div className="my-2 text-center text-3xl font-bold text-amber-500">
             Lets Connect !
           </div>

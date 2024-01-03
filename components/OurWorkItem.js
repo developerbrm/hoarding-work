@@ -20,8 +20,8 @@ const OurWorkItem = ({ obj }) => {
 
   return (
     <button onClick={handleCardClick} key={id}>
-      <div className="card w-full bg-white text-slate-900 shadow-xl rounded-lg overflow-hidden">
-        <div className="relative w-full h-64">
+      <div className="card w-full overflow-hidden rounded-lg bg-white text-slate-900 shadow-xl">
+        <div className="relative h-full w-full">
           <GetImageFirebaseComponent data={{ fileName, imagesPath }} />
         </div>
         <div className="card-body p-4">

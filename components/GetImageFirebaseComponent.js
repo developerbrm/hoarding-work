@@ -41,7 +41,10 @@ const GetImageFirebaseComponent = ({ data: { fileName, imagesPath } }) => {
       })
   }, [fileRef])
 
-  if (!imageSrc) return <div className="skeleton h-full rounded-b-none w-full"></div>
+  if (!imageSrc)
+    return (
+      <div className="skeleton h-full min-h-[10rem] w-full rounded-b-none"></div>
+    )
 
   return (
     <figure className="relative aspect-square" style={{}}>
