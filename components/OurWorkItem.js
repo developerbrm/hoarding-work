@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import GetImageFirebaseComponent from './GetImageFirebaseComponent'
 import OurWorkPopup from './OurWorkPopup'
 
@@ -55,7 +55,7 @@ const OurWorkItem = ({ obj }) => {
         </div>
       </div>
 
-      <OurWorkPopup data={{ ...data, setShowPopup, showPopup }} />
+      {showPopup ? <OurWorkPopup data={{ ...data, setShowPopup, showPopup }} /> : <></>}
     </button>
   )
 }
