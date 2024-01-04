@@ -10,13 +10,23 @@ const ImageCarousel = ({ images }) => {
 
   const allImages = useMemo(
     () =>
-      images.map((image) => (
-        <div key={getUuid()} id={image} className="carousel-item w-full">
-          <div className="relative h-64 w-full overflow-hidden rounded-md lg:h-72">
-            <GetImageFirebaseComponent data={{ fileName: image, imagesPath }} />
+      images.map((image, index, arr) => {
+        const isSingleImage = arr.length === 1
+
+        return (
+          <div
+            key={getUuid()}
+            id={image}
+            className={`carousel-item ${isSingleImage ? 'w-full' : 'w-5/6'}`}
+          >
+            <div className="relative h-64 w-full overflow-hidden rounded-md lg:h-72">
+              <GetImageFirebaseComponent
+                data={{ fileName: image, imagesPath }}
+              />
+            </div>
           </div>
-        </div>
-      )),
+        )
+      }),
     [images]
   )
 
@@ -41,10 +51,12 @@ const ImageCarousel = ({ images }) => {
 
   return (
     <>
-      <div className="carousel w-full">{allImages}</div>
-      <div className="flex w-full items-center justify-center gap-2 py-1">
-        {allLinks}
+      <div className="carousel carousel-center w-full gap-2 rounded-box">
+        {allImages}
       </div>
+      {/* <div className="flex w-full items-center justify-center gap-2 py-1">
+        {allLinks}
+      </div> */}
     </>
   )
 }
