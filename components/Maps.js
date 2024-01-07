@@ -15,6 +15,8 @@ import {
 import { useSearchParams } from 'next/navigation'
 import { getUuid } from '@/utilities'
 
+const marker_icon = `https://firebasestorage.googleapis.com/v0/b/hording-work.appspot.com/o/images%2Flogo-rounded.png?alt=media&token=711a31d1-31cf-4751-bdda-51346b4a6471`
+
 const API_KEY = `AIzaSyC686X49eO5SmTXlaNMUOdrWwDzC6UmJZ0`
 
 const detailsArr = [
@@ -111,6 +113,10 @@ const Maps = ({ hoardingData }) => {
               key={id}
               position={location}
               onClick={() => setActiveMarker(id)}
+              icon={{
+                url: marker_icon,
+                scaledSize: new google.maps.Size(40, 40),
+              }}
             >
               {activeMarker === id ? (
                 <InfoWindow position={location}>
@@ -121,7 +127,9 @@ const Maps = ({ hoardingData }) => {
                       return (
                         <div key={getUuid()} className="flex gap-1">
                           <div className="font-bold">{label}</div>
-                          <div className="font-normal line-clamp-1">{data[key]}</div>
+                          <div className="line-clamp-1 font-normal">
+                            {data[key]}
+                          </div>
                         </div>
                       )
                     })}
