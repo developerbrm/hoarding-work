@@ -7,26 +7,8 @@ import { db, storage } from '@/firebase/firebaseConfig'
 import { collection, getDocs } from 'firebase/firestore'
 import OurWorkItem from './OurWorkItem'
 
-async function getHoardingData() {
-  const collectionRef = collection(db, 'hoarding-data')
-
-  let data = []
-
-  try {
-    const querySnapshot = await getDocs(collectionRef)
-    data = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      data: doc.data(),
-    }))
-  } catch (error) {
-    console.error('Error fetching documents:', error)
-  }
-
-  return data
-}
-
-const OurWorks = async () => {
-  const documentsArr = await getHoardingData()
+const OurWorks = async ({ hoardingData }) => {
+  const documentsArr = hoardingData
 
   return (
     <div className="">
