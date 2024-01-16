@@ -9,6 +9,7 @@ import Maps from '@/components/Maps'
 import Header from '@/components/header'
 import FormComponent from '@/components/FormComponent'
 import { getHoardingData } from '@/utilities/getDataFromDB'
+import OurClients from '@/components/OurClients'
 
 export const dynamic = 'force-dynamic'
 
@@ -22,6 +23,9 @@ export default async function Home() {
         <LandingSection />
       </section>
       <Stats />
+      <div id="our-client">
+        <OurClients />
+      </div>
       <section id="services">
         <OurWorks hoardingData={hoardingData} />
       </section>

@@ -5,7 +5,9 @@ import { ref, getDownloadURL } from 'firebase/storage'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
-const GetImageFirebaseComponent = ({ data: { fileName, imagesPath } }) => {
+const GetImageFirebaseComponent = ({
+  data: { fileName, imagesPath, extraClassesForImage = '', extraClassesForContainer = '' },
+}) => {
   const sitesRef = ref(storage, imagesPath)
   const fileRef = ref(sitesRef, fileName)
   const [imageSrc, setImageSrc] = useState(null)
@@ -47,12 +49,12 @@ const GetImageFirebaseComponent = ({ data: { fileName, imagesPath } }) => {
     )
 
   return (
-    <figure className="relative aspect-square" style={{}}>
+    <figure className={`relative aspect-square ${extraClassesForContainer}`} style={{}}>
       <Image
         src={imageSrc}
         alt={alt}
         fill={true}
-        className="apply-base-img-css object-cover"
+        className={`apply-base-img-css object-cover ${extraClassesForImage}`}
       />
     </figure>
   )

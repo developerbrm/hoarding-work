@@ -17,7 +17,7 @@ import { getUuid } from '@/utilities'
 
 const marker_icon = `https://firebasestorage.googleapis.com/v0/b/hording-work.appspot.com/o/images%2Flogo-rounded.png?alt=media&token=711a31d1-31cf-4751-bdda-51346b4a6471`
 
-const API_KEY = `AIzaSyC686X49eO5SmTXlaNMUOdrWwDzC6UmJZ0`
+const API_KEY = `AIzaSyDB3-qVGXnsfhhCOhAC56oPe2-4x0ufO3Q`
 
 const detailsArr = [
   {

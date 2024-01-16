@@ -14,7 +14,7 @@ const OurWorks = async ({ hoardingData }) => {
     <div className="">
       <div className="mx-auto my-5 max-w-7xl px-4">
         <div className="my-5 text-center text-3xl font-bold text-amber-500">
-          Our Works
+          Media Options
         </div>
 
         <div
