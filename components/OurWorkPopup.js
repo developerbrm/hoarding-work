@@ -61,12 +61,12 @@ const OurWorkPopup = ({ data }) => {
     <div>
       <button
         onClick={handleOverlayClick}
-        className="fixed inset-0 z-10 h-screen w-screen backdrop-blur-md"
+        className="fixed inset-0 z-10 h-screen w-screen bg-slate-950 bg-opacity-30 backdrop-blur-md"
       ></button>
 
-      <div className="fixed left-1/2 top-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2">
+      <div className="fixed left-1/2 top-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2 ">
         <div className="grid place-content-center">
-          <div className="relative m-5 max-w-2xl rounded-lg bg-white p-3 text-base shadow-lg lg:max-w-2xl">
+          <div className="relative m-5 max-w-2xl rounded-lg bg-slate-50 p-3 text-base shadow-lg lg:max-w-2xl">
             <button
               onClick={handleOverlayClick}
               className="btn-circle btn-sm absolute -right-2 -top-2 z-10 bg-white bg-opacity-100 font-bold transition-transform hover:scale-125"

@@ -31,3 +31,20 @@
 body {
   background: #fff;
 }
+
+body .slick-arrow {
+  @apply invisible md:visible;
+}
+
+body .slick-prev::before,
+body .slick-next::before {
+  @apply md:text-3xl;
+}
+
+body .slick-next {
+  @apply md:-right-10;
+}
+
+body .slick-prev {
+  @apply md:-left-12;
+}

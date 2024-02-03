@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 import GetImageFirebaseComponent from './GetImageFirebaseComponent'
 import { getUuid } from '@/utilities'
+import Slider from 'react-slick'
 
 const ImageCarousel = ({ images }) => {
   const [activeLink, setActiveLink] = useState(images.at(0))
@@ -14,11 +15,7 @@ const ImageCarousel = ({ images }) => {
         const isSingleImage = arr.length === 1
 
         return (
-          <div
-            key={getUuid()}
-            id={image}
-            className={`carousel-item ${isSingleImage ? 'w-full' : 'w-5/6'}`}
-          >
+          <div key={getUuid()} id={image} className={``}>
             <div className="relative h-64 w-full overflow-hidden rounded-md lg:h-96">
               <GetImageFirebaseComponent
                 data={{
@@ -34,34 +31,21 @@ const ImageCarousel = ({ images }) => {
     [images]
   )
 
-  const allLinks = images.map((image) => {
-    const isActive = activeLink === image
-
-    const handleLinkClick = () => {
-      setActiveLink(image)
-    }
-
-    return (
-      <a
-        onClick={handleLinkClick}
-        key={getUuid()}
-        href={`#${image}`}
-        className={`block aspect-square h-3 rounded-full transition-colors hover:bg-slate-700 ${
-          isActive ? 'bg-slate-700' : 'bg-slate-200'
-        }`}
-      ></a>
-    )
-  })
+  var settings = {
+    dots: true,
+    arrows: true,
+    // autoplay: true,
+    infinite: true,
+    speed: 500,
+    autoplaySpeed: 10000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  }
 
   return (
-    <>
-      <div className="carousel carousel-center w-full gap-2 rounded-box">
-        {allImages}
-      </div>
-      {/* <div className="flex w-full items-center justify-center gap-2 py-1">
-        {allLinks}
-      </div> */}
-    </>
+    <div className=" w-full lg:max-w-full gap-2 rounded-box">
+        <Slider className='max-w-[90vw] mx-auto' {...settings}>{allImages}</Slider>
+    </div>
   )
 }
 

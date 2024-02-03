@@ -5,6 +5,8 @@ import Footer from '../components/footer'
 import OurWorks from '@/components/OurWorks'
 import Stats from '@/components/Stats'
 import Maps from '@/components/Maps'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 import Header from '@/components/header'
 import FormComponent from '@/components/FormComponent'
