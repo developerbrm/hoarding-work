@@ -19,9 +19,13 @@ const ImageCarousel = ({ images }) => {
             id={image}
             className={`carousel-item ${isSingleImage ? 'w-full' : 'w-5/6'}`}
           >
-            <div className="relative h-64 w-full overflow-hidden rounded-md lg:h-72">
+            <div className="relative h-64 w-full overflow-hidden rounded-md lg:h-96">
               <GetImageFirebaseComponent
-                data={{ fileName: image, imagesPath }}
+                data={{
+                  fileName: image,
+                  imagesPath,
+                  extraClassesForImage: '!object-cover',
+                }}
               />
             </div>
           </div>

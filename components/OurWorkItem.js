@@ -18,7 +18,7 @@ const OurWorkItem = ({ obj }) => {
     setShowPopup(true)
   }
 
-  const isVisible = zonesDataObj[data.zone].checked
+  const isVisible = zonesDataObj?.[data?.zone]?.checked
 
   return (
     <button

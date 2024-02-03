@@ -20,7 +20,7 @@ const RenderZonesTabs = ({ data }) => {
           }))
         }
 
-        const isChecked = zonesDataObj[zone].checked
+        const isChecked = zonesDataObj?.[zone]?.checked
 
         return (
           <label
