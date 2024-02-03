@@ -5,7 +5,7 @@ import GetImageFirebaseComponent from './GetImageFirebaseComponent'
 import OurWorkPopup from './OurWorkPopup'
 
 const OurWorkItem = ({ obj }) => {
-  const { id, data } = obj
+  const { id, data, zonesDataObj } = obj
   const [showPopup, setShowPopup] = useState(false)
   const { images } = data
 
@@ -18,8 +18,15 @@ const OurWorkItem = ({ obj }) => {
     setShowPopup(true)
   }
 
+  const isVisible = zonesDataObj[data.zone].checked
+
   return (
-    <button onClick={handleCardClick} key={id}>
+    <button
+      className={`${isVisible ? '' : 'hidden'}`}
+      disabled={!isVisible}
+      onClick={handleCardClick}
+      key={id}
+    >
       <div className="card w-full overflow-hidden rounded-lg bg-white text-slate-900 shadow-xl">
         <div className="relative h-full w-full">
           <GetImageFirebaseComponent data={{ fileName, imagesPath }} />
@@ -55,7 +62,11 @@ const OurWorkItem = ({ obj }) => {
         </div>
       </div>
 
-      {showPopup ? <OurWorkPopup data={{ ...data, setShowPopup, showPopup }} /> : <></>}
+      {showPopup ? (
+        <OurWorkPopup data={{ ...data, setShowPopup, showPopup }} />
+      ) : (
+        <></>
+      )}
     </button>
   )
 }

@@ -22,11 +22,13 @@ export default async function Home() {
       <section id="home">
         <LandingSection />
       </section>
-      <Stats />
-      <div id="our-client">
+      <section id="status">
+        <Stats />
+      </section>
+      <section id="our-clients">
         <OurClients />
-      </div>
-      <section id="services">
+      </section>
+      <section id="our-works">
         <OurWorks hoardingData={hoardingData} />
       </section>
       <Maps hoardingData={hoardingData} />
