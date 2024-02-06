@@ -4,9 +4,10 @@ import { useMemo, useState } from 'react'
 import GetImageFirebaseComponent from './GetImageFirebaseComponent'
 import { getUuid } from '@/utilities'
 import Slider from 'react-slick'
+import RenderLightBox from './RenderLightBox'
 
 const ImageCarousel = ({ images }) => {
-  const [activeLink, setActiveLink] = useState(images.at(0))
+  const [open, setOpen] = useState(false)
   const imagesPath = '/public/sites-images'
 
   const allImages = useMemo(
@@ -14,7 +15,12 @@ const ImageCarousel = ({ images }) => {
       images.map((image, index, arr) => {
         return (
           <div key={getUuid()} id={image} className={``}>
-            <div className="relative h-64 w-full overflow-hidden rounded-md lg:h-96">
+            <div
+              onClick={() => {
+                setOpen(true)
+              }}
+              className="relative h-64 w-full overflow-hidden rounded-md lg:h-96"
+            >
               <GetImageFirebaseComponent
                 data={{
                   fileName: image,
@@ -35,7 +41,7 @@ const ImageCarousel = ({ images }) => {
     dots: true,
     arrows: true,
     // autoplay: true,
-    infinite: isSingleImage ? false : true,
+    infinite: isSingleImage ? false : false,
     speed: 500,
     autoplaySpeed: 10000,
     slidesToShow: 1,
@@ -47,6 +53,8 @@ const ImageCarousel = ({ images }) => {
       <Slider className="mx-auto max-w-[90vw]" {...settings}>
         {allImages}
       </Slider>
+
+      <RenderLightBox data={{ open, setOpen, images }} />
     </div>
   )
 }

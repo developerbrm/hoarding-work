@@ -1,47 +1,30 @@
 'use client'
 
-import { storage } from '@/firebase/firebaseConfig'
-import { ref, getDownloadURL } from 'firebase/storage'
+import { generateFirbaseDownLoadUrl } from '@/utilities'
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const GetImageFirebaseComponent = ({
-  data: { fileName, imagesPath, extraClassesForImage = '', extraClassesForContainer = '' },
+  data: {
+    fileName,
+    imagesPath,
+    extraClassesForImage = '',
+    extraClassesForContainer = '',
+  },
+  data,
 }) => {
-  const sitesRef = ref(storage, imagesPath)
-  const fileRef = ref(sitesRef, fileName)
   const [imageSrc, setImageSrc] = useState(null)
-  const alt = ''
 
   useEffect(() => {
-    getDownloadURL(fileRef)
-      .then((url) => {
-        setImageSrc(url)
-      })
-      .catch((error) => {
-        // A full list of error codes is available at
-        // https://firebase.google.com/docs/storage/web/handle-errors
-        switch (error.code) {
-          case 'storage/object-not-found':
-            // File doesn't exist
-            break
-          case 'storage/unauthorized':
-            // User doesn't have permission to access the object
-            break
-          case 'storage/canceled':
-            // User canceled the upload
-            break
+    generateFirbaseDownLoadUrl({
+      fileName,
+      imagesPath,
+    }).then((img) => {
+      setImageSrc(img)
+    })
+  }, [fileName, imagesPath])
 
-          // ...
-
-          case 'storage/unknown':
-            // Unknown error occurred, inspect the server response
-            break
-        }
-
-        console.log(error.code)
-      })
-  }, [fileRef])
+  const alt = ''
 
   if (!imageSrc)
     return (
@@ -49,7 +32,10 @@ const GetImageFirebaseComponent = ({
     )
 
   return (
-    <figure className={`relative aspect-square ${extraClassesForContainer}`} style={{}}>
+    <figure
+      className={`relative aspect-square ${extraClassesForContainer}`}
+      style={{}}
+    >
       <Image
         src={imageSrc}
         alt={alt}
