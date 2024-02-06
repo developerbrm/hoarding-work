@@ -15,13 +15,11 @@ export const metadata = {
     'Elevate your brand with high-impact advertisement hoardings. Reach a wider audience and achieve your marketing goals with our strategic hoarding solutions.',
 }
 
-Head
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link
+                <link
           rel="apple-touch-icon"
           sizes="180x180"
           href="/assets/icons/favicon_io/apple-touch-icon.png"

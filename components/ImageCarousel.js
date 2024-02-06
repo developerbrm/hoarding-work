@@ -12,8 +12,6 @@ const ImageCarousel = ({ images }) => {
   const allImages = useMemo(
     () =>
       images.map((image, index, arr) => {
-        const isSingleImage = arr.length === 1
-
         return (
           <div key={getUuid()} id={image} className={``}>
             <div className="relative h-64 w-full overflow-hidden rounded-md lg:h-96">
@@ -31,11 +29,13 @@ const ImageCarousel = ({ images }) => {
     [images]
   )
 
+  const isSingleImage = allImages.length === 1
+
   var settings = {
     dots: true,
     arrows: true,
     // autoplay: true,
-    infinite: true,
+    infinite: isSingleImage ? false : true,
     speed: 500,
     autoplaySpeed: 10000,
     slidesToShow: 1,
@@ -43,8 +43,10 @@ const ImageCarousel = ({ images }) => {
   }
 
   return (
-    <div className=" w-full lg:max-w-full gap-2 rounded-box">
-        <Slider className='max-w-[90vw] mx-auto' {...settings}>{allImages}</Slider>
+    <div className=" w-full gap-2 rounded-box lg:max-w-full">
+      <Slider className="mx-auto max-w-[90vw]" {...settings}>
+        {allImages}
+      </Slider>
     </div>
   )
 }
