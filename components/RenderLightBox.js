@@ -1,11 +1,12 @@
 'use client'
 
 import { generateFirbaseDownLoadUrl } from '@/utilities'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 
 const RenderLightBox = ({ data: { open, setOpen, images } }) => {
   const [lightBoxSlides, setLightBoxSlides] = useState([])
+  const zoomRef = React.useRef(null)
 
   const imagesPath = '/public/sites-images'
 
@@ -27,9 +28,12 @@ const RenderLightBox = ({ data: { open, setOpen, images } }) => {
 
   return (
     <Lightbox
-      open={open}
-      close={() => setOpen(false)}
+      zoom={{ ref: zoomRef }}
+      styles={{ container: { backgroundColor: 'rgba(0, 0, 0, .7)' } }}
+      open={open !== -1}
+      close={() => setOpen(-1)}
       slides={lightBoxSlides}
+      index={open}
     />
   )
 }

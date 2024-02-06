@@ -7,7 +7,7 @@ import Slider from 'react-slick'
 import RenderLightBox from './RenderLightBox'
 
 const ImageCarousel = ({ images }) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(-1)
   const imagesPath = '/public/sites-images'
 
   const allImages = useMemo(
@@ -17,7 +17,7 @@ const ImageCarousel = ({ images }) => {
           <div key={getUuid()} id={image} className={``}>
             <div
               onClick={() => {
-                setOpen(true)
+                setOpen(index)
               }}
               className="relative h-64 w-full overflow-hidden rounded-md lg:h-96"
             >
