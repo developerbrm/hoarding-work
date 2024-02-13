@@ -23,7 +23,7 @@ export default async function Home() {
     <main>
       {/* <Header /> */}
       <section id="home">
-        <LandingSection />
+        <LandingSection hoardingData={hoardingData} />
       </section>
       <section id="status">
         <Stats />

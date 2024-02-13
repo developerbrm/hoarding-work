@@ -4,8 +4,16 @@ import Image from 'next/image'
 
 import img1 from '../public/assets/images/img-1.png'
 import logo_icon from '../public/assets/images/logo-icon.jpeg'
+import ImageCarousel from './ImageCarousel'
+import { images } from '@/next.config'
+import AutoPlayCarousel from './AutoPlayCarousel'
 
-const LandingSection = () => {
+const LandingSection = ({ hoardingData }) => {
+  const carouselImages = hoardingData
+    .slice(0, 5)
+    .map((obj) => obj.data.images)
+    .flat(4)
+
   return (
     <div
       id="landing-section"
@@ -33,11 +41,9 @@ const LandingSection = () => {
           </Link>
         </div>
       </div>
-      <Image
-        alt=""
-        src={img1}
-        className="apply-base-img-css pointer-events-none inset-0 z-0 col-[1/-1] row-[1/-1] scale-105 object-cover"
-      />
+    
+
+      <AutoPlayCarousel images={carouselImages} />
     </div>
   )
 }

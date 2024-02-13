@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-                <link
+        <link
           rel="apple-touch-icon"
           sizes="180x180"
           href="/assets/icons/favicon_io/apple-touch-icon.png"

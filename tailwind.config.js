@@ -22,6 +22,10 @@ module.exports = {
           '0%, 100%': { transform: 'rotate(-1deg)' },
           '50%': { transform: 'rotate(1deg)' },
         },
+        scaler: {
+          '0%': { transform: 'scale(1.1)' },
+          '100%': { transform: 'scale(1.0)' },
+        },
       },
       animation: {
         wiggle: 'wiggle 1s ease-in-out infinite',

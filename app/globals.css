@@ -29,7 +29,7 @@
 } */
 
 body {
-  @apply  bg-gradient-to-b from-slate-50 to-slate-100;
+  @apply bg-gradient-to-b from-slate-50 to-slate-100;
 }
 
 body .slick-dots {
@@ -51,4 +51,8 @@ body .slick-next {
 
 body .slick-prev {
   @apply md:-left-12;
+}
+
+body .slick-current {
+  @apply animate-[scaler_20s_ease-out_infinite];
 }
