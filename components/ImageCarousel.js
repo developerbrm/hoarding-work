@@ -8,6 +8,7 @@ import RenderLightBox from './RenderLightBox'
 
 const ImageCarousel = ({ images }) => {
   const [open, setOpen] = useState(-1)
+  const [wasOpened, setWasOpened] = useState(false)
   const imagesPath = '/public/sites-images'
 
   const allImages = useMemo(
@@ -18,8 +19,11 @@ const ImageCarousel = ({ images }) => {
             <div
               onClick={() => {
                 setOpen(index)
+                setWasOpened(true)
               }}
-              className="relative h-64 w-full overflow-hidden rounded-md lg:h-96"
+              className={`${
+                wasOpened ? '' : ''
+              } relative h-64 w-full overflow-hidden rounded-md lg:h-96`}
             >
               <GetImageFirebaseComponent
                 data={{
@@ -28,11 +32,24 @@ const ImageCarousel = ({ images }) => {
                   extraClassesForImage: '!object-cover',
                 }}
               />
+              {!wasOpened ? (
+                <span class="absolute left-0 top-0 inline-flex h-full w-full scale-[.1] animate-[ping_2s_ease-out_infinite] rounded-full bg-sky-400 opacity-20"></span>
+              ) : (
+                <></>
+              )}
             </div>
+
+            {!wasOpened ? (
+              <div className="text-center text-sm">
+                Click the images to enlarge
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         )
       }),
-    [images]
+    [images, wasOpened]
   )
 
   const isSingleImage = allImages.length === 1

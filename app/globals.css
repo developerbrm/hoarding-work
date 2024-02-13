@@ -32,6 +32,10 @@ body {
   background: #fff;
 }
 
+body .slick-dots {
+  @apply static;
+}
+
 body .slick-arrow {
   @apply invisible md:visible;
 }
