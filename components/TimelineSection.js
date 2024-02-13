@@ -23,7 +23,7 @@ const TimeLineItem = ({ data: { obj, index } }) => {
   const { heading, content } = data
 
   return (
-    <div key={id} className="rounded-lg bg-slate-100 p-3">
+    <div key={id} className="rounded-lg bg-blue-100 p-3">
       <div className="mb-1 text-xs font-bold text-amber-600 md:text-sm">{`${heading}`}</div>
 
       <ul className="list-outside list-disc">
