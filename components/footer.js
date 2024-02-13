@@ -15,50 +15,44 @@ export default function Footer() {
       </div>
       <div className="mx-auto grid md:grid-cols-3">
         <div className="">
-          <h2 className="mt-4 text-start text-lg font-bold text-white ">
+          <h2 className="mb-2 mt-4 text-start text-2xl font-bold text-white ">
             Navigation
           </h2>
-          <div className="pl-1 md:pl-0">
-            <p className="text-start text-sm text-white">
+          <div className="pl-1 text-base md:pl-0">
+            <p className="text-start text-white">
               <Link href="#home">Home </Link>
             </p>
-            <Link
-              href={`#status`}
-              className="block text-start text-sm text-white"
-            >
+            <Link href={`#status`} className="block text-start text-white">
               About Us
             </Link>
-            <p className="text-start text-sm text-white">
+            <p className="text-start text-white">
               <Link href="#our-works">Our Work </Link>
             </p>
-            <Link
-              href={`#our-clients`}
-              className="block text-start text-sm text-white"
-            >
+            <Link href={`#our-clients`} className="block text-start text-white">
               Our Clients
             </Link>
-            <p className="text-start text-sm text-white">
+            <p className="text-start text-white">
               <Link href="#contact-us">Contact Us</Link>
             </p>
           </div>
         </div>
         <div>
-          <h2 className="mt-4 text-start text-lg font-bold text-white ">
+          <h2 className="mb-2 mt-4 text-start text-2xl font-bold text-white ">
             Contact Us
           </h2>
-          <div className="pl-1 md:pl-0">
-            <address className="max-w-[25ch] text-start text-sm not-italic text-white">
+          <div className="pl-1 text-base md:pl-0">
+            <address className="max-w-[25ch] text-start not-italic text-white">
               307,C,BLOCK,DDA MARKET VIKAS PURI,WEST DELHI, DELHI 110018
             </address>
             <Link
               href={`tel:8447338223`}
-              className="block text-start text-sm text-white"
+              className="block text-start text-white"
             >
               8447338223
             </Link>
             <Link
               href={`mailto:nikhil.ngadvertisement@gmail.com`}
-              className="block text-start text-sm text-white"
+              className="block text-start text-white"
             >
               nikhil.ngadvertisement@gmail.com
             </Link>
@@ -66,7 +60,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h2 className="mt-4 text-start text-lg font-bold text-white ">
+          <h2 className="mb-2 mt-4 text-start text-2xl font-bold text-white ">
             Get Connected
           </h2>
           <div className="">
