@@ -53,6 +53,6 @@ body .slick-prev {
   @apply md:-left-12;
 }
 
-body .slick-current {
+body #landing-section .slick-current {
   @apply animate-[scaler_20s_ease-out_infinite];
 }
