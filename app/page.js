@@ -1,18 +1,16 @@
 import LandingSection from '@/components/LandingSection'
-import TimelineSection from '@/components/TimelineSection'
-import Image from 'next/image'
-import Footer from '../components/footer'
+import Maps from '@/components/Maps'
 import OurWorks from '@/components/OurWorks'
 import Stats from '@/components/Stats'
-import Maps from '@/components/Maps'
-import 'slick-carousel/slick/slick.css'
+import TimelineSection from '@/components/TimelineSection'
 import 'slick-carousel/slick/slick-theme.css'
+import 'slick-carousel/slick/slick.css'
 import 'yet-another-react-lightbox/styles.css'
+import Footer from '../components/footer'
 
-import Header from '@/components/header'
 import FormComponent from '@/components/FormComponent'
-import { getHoardingData } from '@/utilities/getDataFromDB'
 import OurClients from '@/components/OurClients'
+import { getHoardingData } from '@/utilities/getDataFromDB'
 
 export const dynamic = 'force-dynamic'
 
