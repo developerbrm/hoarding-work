@@ -53,7 +53,7 @@ const Maps = ({ hoardingData }) => {
 
   const containerStyle = {
     width: '100%',
-    height: '800px',
+    height: '100%',
   }
 
   const { isLoaded } = useJsApiLoader({
